@@ -11,14 +11,19 @@ const port = 5000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 mongoose.connect("mongodb://localhost/demodb7", { family: 4 }, (err) => {
-    if (err) {
-        console.log("Error Occured")
-    } else {
-        console.log("Connected to Db")
+        if (err) {
+            console.log("Error Occured")
+        } else {
+            console.log("Connected to Db")
 
-        app.listen(port, () => {
-            console.log(`App listening at //localhost:-${port}`)
-        })
-        app.use("/", router)
-    }
-})
+            app.listen(port, () => {
+                console.log(`App listening at //localhost:-${port}`)
+            })
+            app.use("/", router)
+        }
+    })
+    /* 
+     Use to push code in github
+      git commit -m "initial commit"
+       git push origin main
+       */
