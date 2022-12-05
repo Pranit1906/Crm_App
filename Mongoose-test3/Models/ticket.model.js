@@ -41,16 +41,6 @@ const ticket = new mongoose.Schema({
             return Date.now()
         }
     },
-    //----------UserSchema updated for ticketSchema-------------
-    ticketCreated: {
-        type: mongoose.SchemaTypes.ObjectId,
-        ref: "Ticket"
-    },
-
-    ticketAssigned: {
-        type: mongoose.SchemaTypes.ObjectId,
-        ref: "Ticket"
-    },
 
 })
 const ticketSChema = mongoose.model('Tickets', ticket)
