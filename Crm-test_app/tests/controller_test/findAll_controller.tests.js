@@ -9,12 +9,13 @@ beforeEach(async() => { await closeDatabase() });
 afterAll(async() => { await clearDatabase() });
 
 const userTestPayload = {
-    name: 'Test',
-    userId: '123',
-    email: 'test@relevel.com',
-    userType: 'CUSTOMER',
-    userStatus: 'APPROVED'
-}
+        name: 'Test',
+        userId: '123',
+        email: 'test@relevel.com',
+        userType: 'CUSTOMER',
+        userStatus: 'APPROVED'
+    }
+    //With filters is pending.........
 
 describe('findAll', () => {
     it('Success without filters', async() => {
