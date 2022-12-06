@@ -16,6 +16,17 @@ const userTestPayload = {
     userStatus: 'APPROVED'
 }
 
+const testPayload = {
+    name: "Test",
+    userId: "1",
+    emailId: "test@relevel.com",
+    password: "pwd",
+    userType: "CUSTOMER",
+    userStatus: "PENDNG",
+    ticketsCreated: [],
+    ticketsAssigned: []
+}
+
 describe('update', () => {
     it('Failure case', async() => {
             //Arrange
@@ -42,9 +53,9 @@ describe('update', () => {
             //Arrange
             const req = mockRequest();
             const res = mockResponse();
-            req.body.userId = "1";
-            const spy = jest.spyOn(update, "findOneAndUpdate").mockImplementation(() => ({
-                exec: jest.fn().mockReturnValue(Promise.resolve(userTestPayload))
+            req.params.userId = "1";
+            const spy = jest.spyOn(UserModel, "findOneAndUpdate").mockImplementation(() => ({
+                exec: jest.fn().mockReturnValue(Promise.resolve(testPayload))
             }))
 
             //Act
@@ -55,7 +66,7 @@ describe('update', () => {
             expect(spy).ToHaveBeenCalled();
             expect(res.send).ToHaveBeenCalledWith(
                 expect.objectContaining({
-                    message: 'Some Error Occurred'
+                    message: 'User record updated successfully'
                 })
             )
         })
