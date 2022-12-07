@@ -5,8 +5,8 @@ const update = require('../../Controller/update.controller')
 
 
 beforeAll(async() => { await connect() });
-beforeEach(async() => { await closeDatabase() });
-afterAll(async() => { await clearDatabase() });
+beforeEach(async() => { await clearDatabase() });
+afterAll(async() => { await closeDatabase() });
 
 const userTestPayload = {
     name: 'Test',
@@ -27,7 +27,7 @@ const testPayload = {
     ticketsAssigned: []
 }
 
-describe('update', () => {
+xdescribe('update', () => {
     it('Failure case', async() => {
             //Arrange
             const req = mockRequest();

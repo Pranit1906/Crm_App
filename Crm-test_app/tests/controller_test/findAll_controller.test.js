@@ -5,8 +5,8 @@ const { findAll } = require('../../Controller/findAll.controller')
 
 
 beforeAll(async() => { await connect() });
-beforeEach(async() => { await closeDatabase() });
-afterAll(async() => { await clearDatabase() });
+beforeEach(async() => { await clearDatabase() });
+afterAll(async() => { await closeDatabase() });
 
 const userTestPayload = {
         name: 'Test',
@@ -17,7 +17,7 @@ const userTestPayload = {
     }
     //With filters is pending.........
 
-describe('findAll', () => {
+xdescribe('findAll', () => {
     it('Success without filters', async() => {
             //Arrange
             const req = mockRequest();

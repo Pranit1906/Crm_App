@@ -7,8 +7,8 @@ const { JsonWebTokenError } = require('jsonwebtoken');
 const client = require('../../Utilis/notificationClient').client;
 
 beforeAll(async() => { await connect() });
-beforeEach(async() => { await closeDatabase() });
-afterAll(async() => { await clearDatabase() });
+beforeEach(async() => { await clearDatabase() });
+afterAll(async() => { await closeDatabase() });
 
 const ticketPayLoad = {
     title: "Test",

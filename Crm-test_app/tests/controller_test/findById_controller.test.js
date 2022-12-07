@@ -4,9 +4,8 @@ const { connect, closeDatabase, clearDatabase } = require('../db');
 const UserModel = require('../../Models/user.model');
 
 beforeAll(async() => { await connect() });
-beforeEach(async() => { await closeDatabase() });
-afterAll(async() => { await clearDatabase() });
-
+beforeEach(async() => { await clearDatabase() });
+afterAll(async() => { await closeDatabase() });
 const testpayload = {
     name: "Test",
     userId: "1",
@@ -18,7 +17,7 @@ const testpayload = {
     ticketsAssigned: []
 }
 
-describe('findById', () => {
+xdescribe('findById', () => {
     it('Success', async() => {
             //Arrange
             const req = mockRequest();

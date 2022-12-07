@@ -28,7 +28,7 @@ exports.connect = async() => {
 
 //Close Database part
 exports.closeDatabase = async() => {
-    await mongoose.connection.dropCollection();
+    await mongoose.connection.dropDatabase();
     await mongoose.connection.close();
     if (mongodb) {
         await mongodb.stop();
@@ -39,7 +39,7 @@ exports.closeDatabase = async() => {
 
 exports.clearDatabase = async() => {
     const collections = mongoose.connection.collections;
-    for (let key of collections) {
+    for (const key in collections) {
         let collection = collections[key];
         await collection.deleteMany();
     }
