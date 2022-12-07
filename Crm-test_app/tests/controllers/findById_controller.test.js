@@ -18,7 +18,7 @@ const testpayload = {
 }
 
 xdescribe('findById', () => {
-    it('Success', async() => {
+    it('Success', async() => { //Similar error with expected and receive data
             //Arrange
             const req = mockRequest();
             const res = mockResponse();
@@ -31,9 +31,9 @@ xdescribe('findById', () => {
             await findById(req, res)
 
             //Assert
-            expect(res.status).ToHaveBeenCalledWith(200)
-            expect(spy).ToHaveBeenCalled();
-            expect(res.send).ToHaveBeenCalledWith(
+            expect(res.status).toHaveBeenCalledWith(200)
+            expect(spy).toHaveBeenCalled();
+            expect(res.send).toHaveBeenCalledWith(
                 expect.arrayContaining([
                     expect.objectContaining({
                         name: "Test",
@@ -45,24 +45,26 @@ xdescribe('findById', () => {
                 ])
             )
         }),
-        it('user Not found', async() => {
+        it('user Not found', async() => { // similar error with expected and received 
             //Arrange
             const req = mockRequest();
             const res = mockResponse();
             req.params.userId = '1';
             const spy = jest.spyOn(UserModel, 'find').mockImplementation(() => ({
-                exec: jest.fn().mockImplementation(() => { throw new Error("Error Occurred") })
+                exec: jest
+                    .fn()
+                    .mockReturnValue(null)
             }))
 
             //Act
             await findById(req, res)
 
             //Assert
-            expect(res.status).ToHaveBeenCalledWith(200)
-            expect(spy).ToHaveBeenCalled();
-            expect(res.send).ToHaveBeenCalledWith(
+            expect(res.status).toHaveBeenCalledWith(200)
+            expect(spy).toHaveBeenCalled();
+            expect(res.send).toHaveBeenCalledWith(
                 expect.objectContaining({
-                    message: 'User with id 1 not Found '
+                    message: 'User not Found '
                 })
             )
         }),
@@ -79,9 +81,9 @@ xdescribe('findById', () => {
             await findById(req, res)
 
             //Assert
-            expect(res.status).ToHaveBeenCalledWith(500)
-            expect(spy).ToHaveBeenCalled();
-            expect(res.send).ToHaveBeenCalledWith(
+            expect(res.status).toHaveBeenCalledWith(500)
+            expect(spy).toHaveBeenCalled();
+            expect(res.send).toHaveBeenCalledWith(
                 expect.objectContaining({
                     message: 'Error Occurred'
                 })

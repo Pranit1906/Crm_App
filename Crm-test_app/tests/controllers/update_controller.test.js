@@ -1,7 +1,7 @@
 const { connect, closeDatabase, clearDatabase } = require("../db");
 const UserModel = require("../../Models/user.model");
 const { mockRequest, mockResponse } = require("../interceptor");
-const update = require('../../Controller/update.controller')
+const { update } = require('../../Controller/update.controller')
 
 
 beforeAll(async() => { await connect() });
@@ -27,22 +27,22 @@ const testPayload = {
     ticketsAssigned: []
 }
 
-xdescribe('update', () => {
+describe('update', () => {
     it('Failure case', async() => {
             //Arrange
             const req = mockRequest();
             const res = mockResponse();
             req.params = { userId: '1' };
-            const spy = jest.sypOn(UserModel, 'findOneAndUpdate').mockImplementation(() => ({
+            const spy = jest.spyOn(UserModel, 'findOneAndUpdate').mockImplementation(() => ({
                     exec: () => { throw new Error('Error Occurred') }
                 }))
                 //Act
-            await update(req, res);
+            await update(req, res)
 
             //Assert
-            expect(res.status).ToHaveBeenCalledWith(500);
-            expect(spy).ToHaveBeenCalled();
-            expect(res.send).ToHaveBeenCalledWith(
+            expect(res.status).toHaveBeenCalledWith(500);
+            expect(spy).toHaveBeenCalled();
+            expect(res.send).toHaveBeenCalledWith(
                 expect.objectContaining({
                     message: 'Some Error Occurred'
                 })
@@ -62,9 +62,9 @@ xdescribe('update', () => {
             await update(req, res)
 
             //Assert
-            expect(res.status).ToHaveBeenCalledWith(200);
-            expect(spy).ToHaveBeenCalled();
-            expect(res.send).ToHaveBeenCalledWith(
+            expect(res.status).toHaveBeenCalledWith(200);
+            expect(spy).toHaveBeenCalled();
+            expect(res.send).toHaveBeenCalledWith(
                 expect.objectContaining({
                     message: 'User record updated successfully'
                 })

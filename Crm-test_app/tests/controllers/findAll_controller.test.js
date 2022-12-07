@@ -17,29 +17,31 @@ const userTestPayload = {
     }
     //With filters is pending.........
 
-xdescribe('findAll', () => {
-    it('Success without filters', async() => {
+describe('findAll', () => {
+    it('Success without filters', async() => { //Not working due to mismatch
             //Arrange
             const req = mockRequest();
             const res = mockResponse();
             req.query = {};
-            const spy = jest.sypOn(UserModel, 'find').mockImplementation(() => ({
-                    exec: jest.fn().mockReturnValue(Promise.resolve(userTestPayload))
+            const spy = jest.spyOn(UserModel, 'find').mockImplementation(() => ({
+                    exec: jest.fn().mockReturnValue(Promise.resolve([userTestPayload]))
                 }))
                 //Act
             await findAll(req, res);
 
             //Assert
-            expect(res.status).ToHaveBeenCalled(200);
-            expect(spy).ToHaveBeenCalled();
-            expect(res.send).ToHaveBeenCalledWith(
+            expect(res.status).toHaveBeenCalledWith(200);
+            expect(spy).toHaveBeenCalled();
+            expect(res.send).toHaveBeenCalledWith(
                 expect.arrayContaining([
                     expect.objectContaining({
-                        name: 'Test',
-                        userId: '123',
-                        email: 'test@relevel.com',
-                        userType: 'CUSTOMER',
-                        userStatus: 'APPROVED'
+                        response: expect.objectContaining({
+                            name: 'Test',
+                            userId: '123',
+                            email: 'test@relevel.com',
+                            userType: 'CUSTOMER',
+                            userStatus: 'APPROVED'
+                        })
                     })
                 ])
             )
@@ -50,18 +52,18 @@ xdescribe('findAll', () => {
             const req = mockRequest();
             const res = mockResponse();
             req.query = {};
-            const spy = jest.sypOn(UserModel, 'find').mockImplementation(() => ({
+            const spy = jest.spyOn(UserModel, 'find').mockImplementation(() => ({
                     exec: jest.fn().mockReturnValue(Promise.resolve(null))
                 }))
                 //Act
             await findAll(req, res);
 
             //Assert
-            expect(res.status).ToHaveBeenCalled(200);
-            expect(spy).ToHaveBeenCalled();
-            expect(res.send).ToHaveBeenCalledWith(
+            expect(res.status).toHaveBeenCalledWith(200);
+            expect(spy).toHaveBeenCalled();
+            expect(res.send).toHaveBeenCalledWith(
                 expect.objectContaining({
-                    message: `User with Id ${userId} not present`
+                    message: 'User  not present'
                 })
             )
         })
