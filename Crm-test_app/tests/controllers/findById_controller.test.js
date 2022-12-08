@@ -18,7 +18,7 @@ const testpayload = {
 }
 
 describe('findById', () => {
-    xit('Success', async() => { //Similar error with expected and receive data
+    it('Success', async() => { //Similar error with expected and receive data
             //Arrange
             const req = mockRequest();
             const res = mockResponse();
@@ -68,7 +68,7 @@ describe('findById', () => {
                 })
             )
         }),
-        xit('Failure ', async() => {
+        it('Failure ', async() => {
             //Arrange
             const req = mockRequest();
             const res = mockResponse();

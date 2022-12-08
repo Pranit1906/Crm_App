@@ -19,7 +19,7 @@ beforeAll(async() => { await connect() });
 beforeEach(async() => { await clearDatabase() });
 afterAll(async() => { await closeDatabase() });
 
-xdescribe('signup', () => {
+describe('signup', () => {
     it('success', async() => {
             //Arrange
             const req = mockRequest();
@@ -39,6 +39,32 @@ xdescribe('signup', () => {
                         "userId": "1",
                         "userStatus": "APPROVED",
                         "userType": "CUSTOMER"
+                    })
+
+                })
+            )
+        }),
+        it('success with Engg', async() => {
+            //Arrange
+            const req = mockRequest();
+            const res = mockResponse();
+            // testPayload.userStatus = "PENDING"
+            testPayload.userType = "ENGINEER"
+            req.body = testPayload;
+
+            //Act
+            await signup(req, res);
+
+            //Assert
+            expect(res.status).toHaveBeenCalledWith(201);
+            expect(res.send).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    response: expect.objectContaining({
+                        "emailId": "test@relevel.com",
+                        "name": "Test",
+                        "userId": "1",
+                        "userStatus": "PENDING",
+                        "userType": "ENGINEER"
                     })
 
                 })
@@ -67,7 +93,7 @@ xdescribe('signup', () => {
 
 
 describe("Login", () => {
-    xit("success", async() => {
+    it("success", async() => {
             //Arrange
             const req = mockRequest();
             const res = mockResponse();
@@ -91,13 +117,12 @@ describe("Login", () => {
                     userId: '1',
                     name: 'Test',
                     emailId: 'test@relevel.com',
-                    userType: 'CUSTOMER',
+                    userType: 'ENGINEER',
                     userStatus: 'APPROVED'
                 })
             )
 
         }),
-        // not giving correct result...............
         it('Failure case for status check', async() => {
             //Arrange
             const res = mockResponse();
@@ -122,7 +147,7 @@ describe("Login", () => {
             )
         }),
 
-        xit('Failure case for wrong pwds', async() => {
+        it('Failure case for wrong pwds', async() => {
             //Arrange
             const req = mockRequest();
             const res = mockResponse();
@@ -147,7 +172,7 @@ describe("Login", () => {
                 })
             )
         }),
-        xit('Failure case for invalid user', async() => {
+        it('Failure case for invalid user', async() => {
             //Arrange
             const req = mockRequest();
             const res = mockResponse();

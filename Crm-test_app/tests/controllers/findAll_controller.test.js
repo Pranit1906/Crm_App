@@ -11,13 +11,13 @@ afterAll(async() => { await closeDatabase() });
 const userTestPayload = {
         name: 'Test',
         userId: '123',
-        email: 'test@relevel.com',
+        emailId: 'test@relevel.com',
         userType: 'CUSTOMER',
         userStatus: 'APPROVED'
     }
     //With filters is pending.........
 
-xdescribe('findAll', () => {
+describe('findAll', () => {
     it('Success without filters', async() => { //Not working due to mismatch
             //Arrange
             const req = mockRequest();
@@ -37,7 +37,7 @@ xdescribe('findAll', () => {
                     expect.objectContaining({
                         name: 'Test',
                         userId: '123',
-                        email: 'test@relevel.com',
+                        emailId: 'test@relevel.com',
                         userType: 'CUSTOMER',
                         userStatus: 'APPROVED'
                     })
