@@ -5,8 +5,8 @@ exports.userResponse = (users) => {
         usersResult.push({
             name: user.name,
             userId: user.userId,
-            email: user.email,
-            userTypes: user.userType,
+            emailId: user.emailId,
+            userType: user.userType,
             userStatus: user.userStatus
         });
     });

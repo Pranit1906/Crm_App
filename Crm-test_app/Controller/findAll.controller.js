@@ -1,5 +1,5 @@
-const User = require('../../Models/user.model')
-const objectConverter = require('../../Utilis/objectConverter')
+const User = require('../Models/user.model')
+const objectConverter = require('../Utilis/objectConverter')
 
 var users;
 
@@ -64,7 +64,7 @@ exports.findAll = async(req, res) => {
         res.status(200).send(objectConverter.userResponse(users))
     } else {
         res.status(200).send({
-            message: `User with Id ${userIdReq} not present`
+            message: 'User  not present'
         })
     }
 }

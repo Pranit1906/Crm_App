@@ -1,7 +1,7 @@
-const User = require('../../Models/user.model')
+const User = require('../Models/user.model')
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
-const config = require("../../Configs/config.secret")
+const config = require("../Configs/config")
 
 exports.signup = async(req, res) => {
     const body = req.body;
@@ -14,14 +14,14 @@ exports.signup = async(req, res) => {
     }
 
     const userObj = {
-        name: body.name,
-        userId: body.userId,
-        emailId: body.emailId,
-        userType: userType,
-        userStatus: userStatus,
-        password: bcrypt.hashSync(body.password, 8)
-    }
-    console.log(userObj)
+            name: body.name,
+            userId: body.userId,
+            emailId: body.emailId,
+            userType: userType,
+            userStatus: userStatus,
+            password: bcrypt.hashSync(body.password, 8)
+        }
+        // console.log(userObj)
     try {
         const userResponse = await User.create(userObj);
         const response = {
@@ -35,7 +35,7 @@ exports.signup = async(req, res) => {
         }
         return res.status(201).send({ response })
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         return res.status(500).send({
             message: "Failure in signUp!"
         })
@@ -43,12 +43,12 @@ exports.signup = async(req, res) => {
 }
 
 exports.Login = async(req, res) => {
-    const body = req.body;
-    const userId = body.userId;
-    const password = body.password;
-    try {
+        const body = req.body;
+        const userId = body.userId;
+        const password = body.password;
+        // try {
         const user = await User.findOne({ userId: userId });
-        console.log(user)
+        // console.log(user)
         if (user == null) {
             res.status(400).send({
                 message: "User Not Found!"
@@ -57,15 +57,16 @@ exports.Login = async(req, res) => {
         }
 
         if (user.userStatus != "APPROVED") {
-            return res.status(200).send({
+            res.status(200).send({
                 message: "User Not Authorized to Login"
             })
+            return;
         }
         var validPassword = bcrypt.compareSync(
-            body.password,
-            user.password
-        )
-        console.log(validPassword);
+                body.password,
+                user.password
+            )
+            // console.log(validPassword);
         if (!validPassword) {
             res.status(401).send({
                 message: "Invalid Password"
@@ -87,10 +88,11 @@ exports.Login = async(req, res) => {
         }
 
         res.status(200).send(userResp);
-    } catch (err) {
-        res.status(500).send({
-            message: "Failure in Login!"
-        })
     }
+    //      catch (err) {
+    //         res.status(500).send({
+    //             message: "Failure in Login!"
+    //         })
+    //     }
 
-}
+// }

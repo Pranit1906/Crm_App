@@ -17,8 +17,8 @@ const testpayload = {
     ticketsAssigned: []
 }
 
-xdescribe('findById', () => {
-    it('Success', async() => { //Similar error with expected and receive data
+describe('findById', () => {
+    xit('Success', async() => { //Similar error with expected and receive data
             //Arrange
             const req = mockRequest();
             const res = mockResponse();
@@ -64,11 +64,11 @@ xdescribe('findById', () => {
             expect(spy).toHaveBeenCalled();
             expect(res.send).toHaveBeenCalledWith(
                 expect.objectContaining({
-                    message: 'User not Found '
+                    message: 'User not Found'
                 })
             )
         }),
-        it('Failure ', async() => {
+        xit('Failure ', async() => {
             //Arrange
             const req = mockRequest();
             const res = mockResponse();
