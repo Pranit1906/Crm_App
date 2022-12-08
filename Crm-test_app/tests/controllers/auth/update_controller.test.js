@@ -1,7 +1,8 @@
-const { connect, closeDatabase, clearDatabase } = require("../db");
-const UserModel = require("../../Models/user.model");
-const { mockRequest, mockResponse } = require("../interceptor");
-const { update } = require('../../Controller/update.controller')
+const UserModel = require("../../../Models/user.model");
+const { update } = require("../../../Controller/auth.controller/update.controller");
+const { connect, closeDatabase, clearDatabase } = require("../../db");
+
+const { mockRequest, mockResponse } = require("../../interceptor");
 
 
 beforeAll(async() => { await connect() });
@@ -27,7 +28,7 @@ const testPayload = {
     ticketsAssigned: []
 }
 
-describe('update', () => {
+xdescribe('update', () => {
     it('Failure case', async() => {
             //Arrange
             const req = mockRequest();

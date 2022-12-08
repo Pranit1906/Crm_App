@@ -1,10 +1,10 @@
-const ticketCreation = require('../../Controller/ticket.controller');
-const { mockRequest, mockResponse } = require('../interceptor');
-const { connect, closeDatabase, clearDatabase } = require('../db');
-const UserModel = require('../../Models/user.model');
-const TicketModel = require('../../Models/ticket.model');
+const ticketCreation = require('../../../Controller/ticket.controller/ticket.controller');
+const { mockRequest, mockResponse } = require('../../interceptor');
+const { connect, closeDatabase, clearDatabase } = require('../../db');
+const UserModel = require('../../../Models/user.model');
+const TicketModel = require('../../../Models/ticket.model');
 const { JsonWebTokenError } = require('jsonwebtoken');
-const client = require('../../Utilis/notificationClient').client;
+const client = require('../../../Utilis/notificationClient').client;
 
 beforeAll(async() => { await connect() });
 beforeEach(async() => { await clearDatabase() });
@@ -33,4 +33,13 @@ const userTestPayload = {
     save: jest.fn()
 }
 
-//https://relevel-courses.s3.amazonaws.com/uploads/backend-development-course-0005/6ef6bb7e3f7d4b5faba80b2a180ddbf6.pdf
+describe('Ticket', () => {
+    it('Success in ticket creation', async() => {
+        //Arrange
+
+        //Act
+        await createTicket(req, res)
+            //Assert
+
+    })
+})

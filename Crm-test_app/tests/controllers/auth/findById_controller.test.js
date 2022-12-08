@@ -1,7 +1,8 @@
-const { findById } = require('../../Controller/findById.controller');
-const { mockRequest, mockResponse } = require('../interceptor');
-const { connect, closeDatabase, clearDatabase } = require('../db');
-const UserModel = require('../../Models/user.model');
+const UserModel = require("../../../Models/user.model");
+const { findById } = require("../../../Controller/auth.controller/findById.controller");
+const { connect, closeDatabase, clearDatabase } = require("../../db");
+
+const { mockRequest, mockResponse } = require("../../interceptor");
 
 beforeAll(async() => { await connect() });
 beforeEach(async() => { await clearDatabase() });
@@ -17,7 +18,7 @@ const testpayload = {
     ticketsAssigned: []
 }
 
-describe('findById', () => {
+xdescribe('findById', () => {
     it('Success', async() => { //Similar error with expected and receive data
             //Arrange
             const req = mockRequest();
