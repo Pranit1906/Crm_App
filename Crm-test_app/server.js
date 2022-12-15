@@ -4,7 +4,9 @@ const serverConfig = require("./Configs/server")
 const dbConfig = require("./Configs/dbConfig")
 const route = require('./Routes/auth.routes')
 const app = express();
-
+/*
+ Difference between URI vs URL :- https://www.geeksforgeeks.org/difference-between-url-and-uri/#:~:text=URL%20is%20used%20to%20describe,regardless%20of%20the%20method%20used.
+*/
 mongoose.connect(dbConfig.DB_URL, { family: 4 })
 const db = mongoose.connection;
 

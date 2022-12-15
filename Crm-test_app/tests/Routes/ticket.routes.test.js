@@ -7,19 +7,19 @@ const jwt = require("jsonwebtoken")
 const client = require('../../Utilis/notificationClient').client
 
 
+
 beforeAll(async() => {
     await db.clearDatabase();
     await User.create({
-        name: "Vishwa",
-        userId: 1, // It should be atleat 16, else will throw error
-        email: "Kankvish@gmail.com", // If we don't pass this, it will throw the error
+        name: "Pranit Dubal",
+        userId: "1",
+        emailId: "pranitd5@gmail.com",
+        password: "pwd",
         userType: "ENGINEER",
-        password: "Welcome1",
         userStatus: "APPROVED"
-
-    });
-
+    })
 })
+
 afterAll(async() => {
     await db.closeDatabase();
     app.close();
@@ -27,266 +27,127 @@ afterAll(async() => {
 
 const api_endpoint = "/crm/api/v1/";
 
-const ticketCreateTestPayload = {
+const testTicketPayLoad = {
     title: "Test",
+    description: "Testing",
     ticketPriority: 4,
-    description: "Test",
     status: "OPEN",
     reporter: "1",
     assignee: "1",
-    // createdAt: Date.now(),
-    // updatedAt: Date.now(),
+    createdAt: Date.now(),
+    updatedAt: Date.now(),
     save: jest.fn()
 }
+let updatedId;
 
-let updateId;
-
-xdescribe('Post ticket Endpoints', () => {
-    jest.spyOn(client, 'post').mockImplementation((url, args, cb) => cb("Test", null));
+xdescribe("Post Ticket Creation Endpoint", () => {
+    jest.spyOn(client, "post").mockImplementation((url, args, cb) => cb("Test", null))
 
     var token = 'Bearer ' + jwt.sign({ id: 1 }, config.secret, {
-        expiresIn: 120 // 2 minutes
-    });
+        expiresIn: 120
+    })
 
-    it('should create', async() => {
+    it("Should create ticket", async() => {
         const res = await request(app)
-            .post(api_endpoint + 'tickets/')
+            .post(api_endpoint + 'tickets')
             .set("authorization", token)
-            .send(ticketCreateTestPayload);
-        updateId = res.body.id;
+            .send(testTicketPayLoad)
+        updatedId = res.body.id;
+
         expect(res.statusCode).toEqual(201);
         expect(res.body).toEqual(
             expect.objectContaining({
                 title: "Test",
+                description: "Testing",
                 ticketPriority: 4,
-                description: "Test",
                 status: "OPEN",
                 reporter: "1",
-                assignee: "1",
+                assignee: "1"
             })
-        );
+
+        )
     })
 });
 
-describe('Put ticket Endpoints', () => {
+xdescribe("Put Ticket Updation Endpoint", () => {
+
     jest.spyOn(client, 'post').mockImplementation((url, args, cb) => cb("Test", null));
 
     var token = 'Bearer ' + jwt.sign({ id: 1 }, config.secret, {
-        expiresIn: 120 // 2 minutes
-    });
+        expiresIn: 120
+    })
 
-    it('should update', async() => {
+    it("Should Updation", async() => {
         const res = await request(app)
-            .put(api_endpoint + 'tickets/' + updateId)
+            .put(api_endpoint + 'tickets/' + updatedId)
             .set("authorization", token)
-            .send(ticketCreateTestPayload);
-        expect(res.statusCode).toEqual(200);
+            .send(testTicketPayLoad)
+
+        expect(res.statusCode).toEqual(200)
         expect(res.body).toEqual(
             expect.objectContaining({
                 title: "Test",
+                description: "Testing",
                 ticketPriority: 4,
-                description: "Test",
                 status: "OPEN",
                 reporter: "1",
-                assignee: "1",
+                assignee: "1"
             })
-        );
+        )
     })
 });
 
-xdescribe('Get all ticket Endpoints', () => {
+xdescribe(" Get All Tickets Endpoint", () => {
 
     var token = 'Bearer ' + jwt.sign({ id: 1 }, config.secret, {
-        expiresIn: 120 // 2 minutes
-    });
+        expiresIn: 120
+    })
 
-    it('should get all', async() => {
+    it("Should get all tickets", async() => {
         const res = await request(app)
             .get(api_endpoint + 'tickets')
-            .set("authorization", token)
-            .send();
-        updateId = res.body[0].id;
-        expect(res.statusCode).toEqual(200);
+            .set('authorization', token)
+            .send()
+            // updatedId = res.body[0].userId
+
+        expect(res.statusCode).toEqual(200)
         expect(res.body).toEqual(
             expect.arrayContaining([
                 expect.objectContaining({
                     title: "Test",
+                    description: "Testing",
                     ticketPriority: 4,
-                    description: "Test",
                     status: "OPEN",
                     reporter: "1",
-                    assignee: "1",
+                    assignee: "1"
                 })
             ])
-        );
+        )
     })
 });
 
-xdescribe('Get one ticket Endpoints', () => {
+describe(" Get One Ticket Endpoint", () => {
 
     var token = 'Bearer ' + jwt.sign({ id: 1 }, config.secret, {
-        expiresIn: 120 // 2 minutes
-    });
+        expiresIn: 120
+    })
 
-    it('should get one', async() => {
+    it("Should get one ticket", async() => {
         const res = await request(app)
-            .get(api_endpoint + 'tickets/' + updateId)
-            .set("authorization", token)
-            .send();
-        expect(res.statusCode).toEqual(200);
+            .get(api_endpoint + 'tickets/' + updatedId)
+            .set('authorization', token)
+            .send()
+
+        expect(res.statusCode).toEqual(200)
         expect(res.body).toEqual(
             expect.objectContaining({
                 title: "Test",
+                description: "Testing",
                 ticketPriority: 4,
-                description: "Test",
                 status: "OPEN",
                 reporter: "1",
-                assignee: "1",
+                assignee: "1"
             })
-        );
+        )
     })
-});
-
-// beforeAll(async() => {
-//     await db.clearDatabase();
-//     await User.create({
-//         name: "Pranit Dubal",
-//         userId: "1",
-//         emailId: "pranitd5@gmail.com",
-//         password: "pwd",
-//         userType: "ENGINEER",
-//         userStatus: "APPROVED"
-//     })
-// })
-
-// afterAll(async() => {
-//     await db.closeDatabase();
-//     app.close();
-// })
-
-// const api_endpoint = "/crm/api/v1/";
-
-// const testTicketPayLoad = {
-//     title: "Test",
-//     description: "Testing",
-//     ticketPriority: 4,
-//     status: "OPEN",
-//     reporter: "1",
-//     assignee: "1",
-//     createdAt: Date.now(),
-//     updatedAt: Date.now(),
-//     save: jest.fn()
-// }
-// let updatedId;
-
-// xdescribe("Post Ticket Creation Endpoint", () => {
-//     jest.spyOn(client, "post").mockImplementation((url, args, cb) => cb("Test", null))
-
-//     var token = 'Bearer ' + jwt.sign({ id: 1 }, config.secret, {
-//         expiresIn: 120
-//     })
-
-//     it("Should create ticket", async() => {
-//         const res = await request(app)
-//             .post(api_endpoint + 'tickets')
-//             .set("authorization", token)
-//             .send(testTicketPayLoad)
-//         updatedId = res.body.id;
-
-//         expect(res.statusCode).toEqual(201);
-//         expect(res.body).toEqual(
-//             expect.objectContaining({
-//                 title: "Test",
-//                 description: "Testing",
-//                 ticketPriority: 4,
-//                 status: "OPEN",
-//                 reporter: "1",
-//                 assignee: "1"
-//             })
-
-//         )
-//     })
-// })
-
-// xdescribe("Put Ticket Updation Endpoint", () => {
-
-//     jest.spyOn(client, 'post').mockImplementation((url, args, cb) => cb("Test", null));
-
-//     var token = 'Bearer ' + jwt.sign({ id: 1 }, config.secret, {
-//         expiresIn: 120
-//     })
-
-//     it("Should Updation", async() => {
-//         const res = await request(app)
-//             .put(api_endpoint + 'tickets/' + updatedId)
-//             .set("authorization", token)
-//             .send(testTicketPayLoad)
-
-//         expect(res.statusCode).toEqual(200)
-//         expect(res.body).toEqual(
-//             expect.objectContaining({
-//                 title: "Test",
-//                 description: "Testing",
-//                 ticketPriority: 4,
-//                 status: "OPEN",
-//                 reporter: "1",
-//                 assignee: "1"
-//             })
-//         )
-//     })
-// })
-
-// xdescribe(" Get All Tickets Endpoint", () => {
-
-//     var token = 'Bearer ' + jwt.sign({ id: 1 }, config.secret, {
-//         expiresIn: 120
-//     })
-
-//     it("Should get all tickets", async() => {
-//         const res = await request(app)
-//             .get(api_endpoint + 'tickets')
-//             .set('authorization', token)
-//             .send()
-//         updatedId = res.body[0].id
-
-//         expect(res.statusCode).toEqual(200)
-//         expect(res.body).toEqual(
-//             expect.arrayContaining([
-//                 expect.objectContaining({
-//                     title: "Test",
-//                     description: "Testing",
-//                     ticketPriority: 4,
-//                     status: "OPEN",
-//                     reporter: "1",
-//                     assignee: "1"
-//                 })
-//             ])
-//         )
-//     })
-// })
-
-// xdescribe(" Get One Ticket Endpoint", () => {
-
-//     var token = 'Bearer ' + jwt.sign({ id: 1 }, config.secret, {
-//         expiresIn: 120
-//     })
-
-//     it("Should get one ticket", async() => {
-//         const res = await request(app)
-//             .get(api_endpoint + 'tickets/' + updatedId)
-//             .set('authorization', token)
-//             .send()
-
-//         expect(res.statusCode).toEqual(200)
-//         expect(res.body).toEqual(
-//             expect.objectContaining({
-//                 title: "Test",
-//                 description: "Testing",
-//                 ticketPriority: 4,
-//                 status: "OPEN",
-//                 reporter: "1",
-//                 assignee: "1"
-//             })
-//         )
-//     })
-// })
+})
