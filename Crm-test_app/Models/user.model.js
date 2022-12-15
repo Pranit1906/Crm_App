@@ -54,12 +54,12 @@ const user = new mongoose.Schema({
     //----------UserSchema updated for ticketSchema-------------
     ticketCreated: {
         type: [mongoose.SchemaTypes.ObjectId],
-        ref: "Ticket"
+        ref: "Tickets"
     },
 
     ticketAssigned: {
         type: [mongoose.SchemaTypes.ObjectId],
-        ref: "Ticket"
+        ref: "Tickets"
     },
 });
 

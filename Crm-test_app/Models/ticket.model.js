@@ -17,7 +17,7 @@ const ticket = new mongoose.Schema({
         required: true
     },
 
-    Status: {
+    status: {
         type: String,
         default: "OPEN",
         required: true
