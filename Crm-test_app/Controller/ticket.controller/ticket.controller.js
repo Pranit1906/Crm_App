@@ -56,6 +56,7 @@ exports.createTicket = async(req, res) => {
     try {
         const ticket = await tickets.create(ticketObj);
         if (ticket) {
+
             const customer = await User.findOne({
                 userId: req.userId // id retrieve from token jwt.verify==> decode.id==>req.userid
             }).exec();
@@ -85,11 +86,13 @@ exports.createTicket = async(req, res) => {
                 )
                 //02:22:00
                 // console.log(sendEmail)
-            res.status(201).send(objectConverter.ticketConvertor(ticket));
+
+            return res.status(201).send(objectConverter.ticketConvertor(ticket));
+
         }
     } catch (error) {
         console.log(error)
-        res.status(500).send({
+        return res.status(500).send({
             message: "Error Occurred in Ticket Creation!"
         })
     }

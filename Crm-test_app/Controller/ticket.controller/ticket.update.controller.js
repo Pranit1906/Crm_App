@@ -13,11 +13,14 @@ const objectConverter = require('../../Utilis/objectConverter')
 
 
 exports.updateTicket = async(req, res) => {
+        var xyz;
         try {
+            console.log(req.params.id);
             const ticket = await Ticket.findOne({ _id: req.params.id }).exec();
-
+            // xyz = ticket
+            console.log(ticket)
             const user = await User.findOne({ userId: req.userId }).exec();
-
+            console.log(user)
             if (user.userType == userType.admin ||
                 ticket.reporter == user.userId ||
                 ticket.assignee == user.userId) {
@@ -51,6 +54,8 @@ exports.updateTicket = async(req, res) => {
                 });
             }
         } catch (error) {
+            console.log(error)
+                // console.log(xyz)
             return res.status(500).send({
                 message: 'Internal Error Occurred'
             })

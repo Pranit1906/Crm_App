@@ -20,7 +20,7 @@ exports.findAll = async(req, res) => {
                 message: 'Some Error Occurred'
             })
         }
-    } else if (userTypeReq & userStatusReq) {
+    } else if (userTypeReq && userStatusReq) {
         try {
             users = await User.find({
                 userType: userTypeReq,

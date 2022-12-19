@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/18</span>
+                <span class='fraction'>18/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>6/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/18</span>
+                <span class='fraction'>18/18</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -160,45 +160,45 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -241,46 +241,46 @@ const objectConverter = require('../../Utilis/objectConverter')
     */
 &nbsp;
 &nbsp;
-exports.updateTicket = <span class="fstat-no" title="function not covered" >as</span>ync(req, res) =&gt; {
-<span class="cstat-no" title="statement not covered" >        try {</span>
-            const ticket = <span class="cstat-no" title="statement not covered" >await Ticket.findOne({ _id: req.params.id }).exec();</span>
+exports.updateTicket = async(req, res) =&gt; {
+        try {
+            const ticket = await Ticket.findOne({ _id: req.params.id }).exec();
 &nbsp;
-            const user = <span class="cstat-no" title="statement not covered" >await User.findOne({ userId: req.userId }).exec();</span>
+            const user = await User.findOne({ userId: req.userId }).exec();
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            if (user.userType == userType.admin ||</span>
+            if (user.userType == userType.admin ||
                 ticket.reporter == user.userId ||
                 ticket.assignee == user.userId) {
                 //    Allow Update the ticket
-<span class="cstat-no" title="statement not covered" >                ticket.status = req.body.status != undefined ? req.body.status : ticket.status;</span>
+                ticket.status = req.body.status != undefined ? req.body.status : <span class="branch-1 cbranch-no" title="branch not covered" >ticket.status;</span>
 &nbsp;
-                const updatedTicket = <span class="cstat-no" title="statement not covered" >await ticket.save();</span>
+                const updatedTicket = await ticket.save();
 &nbsp;
-                const engineer = <span class="cstat-no" title="statement not covered" >await User.findOne({</span>
+                const engineer = await User.findOne({
                     userId: ticket.assignee
                 });
 &nbsp;
-                const reporter = <span class="cstat-no" title="statement not covered" >await User.findOne({</span>
+                const reporter = await User.findOne({
                     userId: ticket.reporter
                 });
 &nbsp;
                 //doc for sendEmail :-https://relevel-courses.s3.amazonaws.com/uploads/backend-development-course-0005/a0bc0687a70046fb99122363ccaffc7c.pdf
-<span class="cstat-no" title="statement not covered" >                sendEmail(</span>
+                sendEmail(
                     ticket._id,
                     `Ticket with id:${ticket._id} created`,
                     ticket.description, [reporter.emailId, engineer.emailId].toString(),
                     'CRM app'
                 )
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                res.status(200).send(updatedTicket)</span>
+                res.status(200).send(updatedTicket)
                     // res.status(200).send(objectConverter.ticketConvertor(updatedTicket))
 &nbsp;
             } else {
-<span class="cstat-no" title="statement not covered" >                return res.status(401).send({</span>
+                return res.status(401).send({
                     message: 'User Not Authorised to change the ticket'
                 });
             }
         } catch (error) {
-<span class="cstat-no" title="statement not covered" >            return res.status(500).send({</span>
+            return res.status(500).send({
                 message: 'Internal Error Occurred'
             })
         }
@@ -316,7 +316,7 @@ exports.updateTicket = <span class="fstat-no" title="function not covered" >as</
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-12-09T19:09:27.336Z
+                at 2022-12-15T14:42:47.295Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

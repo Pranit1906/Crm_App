@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">28.57% </span>
+                <span class="strong">76.19% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/21</span>
+                <span class='fraction'>16/21</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>2/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">28.57% </span>
+                <span class="strong">76.19% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/21</span>
+                <span class='fraction'>16/21</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -141,8 +141,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -151,23 +151,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -206,10 +206,10 @@ const validate = require('../../Utilis/validateStatus')
 &nbsp;
 &nbsp;
 &nbsp;
-exports.findAllTickets = <span class="fstat-no" title="function not covered" >as</span>ync(req, res) =&gt; {
+exports.findAllTickets = async(req, res) =&gt; {
     let users
-<span class="cstat-no" title="statement not covered" >    try {</span>
-<span class="cstat-no" title="statement not covered" >        users = await User.findOne({</span>
+    try {
+        users = await User.findOne({
             userId: req.userId
         }).exec()
     } catch (error) {
@@ -218,23 +218,23 @@ exports.findAllTickets = <span class="fstat-no" title="function not covered" >as
         })
     }
 &nbsp;
-    let queryObj = <span class="cstat-no" title="statement not covered" >{};</span>
-    let status = <span class="cstat-no" title="statement not covered" >req.query.status;</span>
+    let queryObj = {};
+    let status = req.query.status;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (status) { //&amp;&amp; (validate.statusValidate)</span>
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (status) { //&amp;&amp; (validate.statusValidate)
 <span class="cstat-no" title="statement not covered" >        queryObj.status = status;</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (users.userType == "ENGINEER") {</span>
-<span class="cstat-no" title="statement not covered" >        queryObj.assignee = req.userId;</span>
-    } else <span class="cstat-no" title="statement not covered" >if (users.userType == "CUSTOMER") {</span>
+    if (users.userType == "ENGINEER") {
+        queryObj.assignee = req.userId;
+    } else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="else path not taken" >E</span>if (users.userType == "CUSTOMER") {</span>
 <span class="cstat-no" title="statement not covered" >        queryObj.reporter = req.userId;</span>
     }
 &nbsp;
     let tickets
-<span class="cstat-no" title="statement not covered" >    try {</span>
-<span class="cstat-no" title="statement not covered" >        tickets = await Ticket.find(queryObj).exec();</span>
-<span class="cstat-no" title="statement not covered" >        res.status(200).send(objectConverter.ticketListConvertor(tickets))</span>
+    try {
+        tickets = await Ticket.find(queryObj).exec();
+        res.status(200).send(objectConverter.ticketListConvertor(tickets))
     } catch (error) {
 <span class="cstat-no" title="statement not covered" >        res.status(500).send({</span>
             message: "Interanl Error Occured"
@@ -271,7 +271,7 @@ try {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-12-15T14:18:54.921Z
+                at 2022-12-15T15:50:04.418Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
